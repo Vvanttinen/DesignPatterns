@@ -7,7 +7,11 @@ public class Logger {
   private FileWriter fw;
 
   private Logger() {
-
+    try {
+      fw = new FileWriter("default_log.txt", true);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public static Logger getInstance() {
@@ -19,6 +23,9 @@ public class Logger {
 
   public void setFileName(String fileName) {
     try {
+      if (fw != null) {
+        fw.close();
+      }
       fw = new FileWriter(fileName, true);
     } catch (Exception e) {
       e.printStackTrace();
