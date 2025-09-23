@@ -4,19 +4,25 @@ public class Main {
   public static void main(String[] args) {
     Library library = new Library();
 
+    // Create users
     User user1 = new User("TestiMies");
     User user2 = new User("Admin");
 
+    // Add documents
     library.addDocument(1, "This is a public document.");
     library.addProtectedDocument(2, "This is a protected document.", new String[]{"Admin"});
 
+    // Access documents for both users
     try {
+      // Access public document content
       System.out.println("User1 accessing doc1's content: " + library.getDocument(1).getContent(user1));
       System.out.println("User2 accessing doc1's content: " + library.getDocument(2).getContent(user2));
 
+      // Access document creation date
       System.out.println("User1 accessing doc2's creation date: " + library.getDocument(2).getCreationDate());
       System.out.println("User2 accessing doc2's creation date: " + library.getDocument(2).getCreationDate());
 
+      // Access protected document content
       System.out.println("User2 accessing doc2's content: " + library.getDocument(2).getContent(user2));
       System.out.println("User1 accessing doc2's content: " + library.getDocument(2).getContent(user1));
     } catch (AccessDeniedException e) {

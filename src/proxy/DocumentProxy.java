@@ -16,6 +16,7 @@ public class DocumentProxy implements Document {
 
   @Override
   public String getContent(User user) throws AccessDeniedException {
+    // Check access control before returning content
     if (AccessControlService.getInstance().isAllowed(user.getUsername(), realDocument.getId())) {
       return realDocument.getContent(user);
     } else {
