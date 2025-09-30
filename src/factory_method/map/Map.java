@@ -1,6 +1,8 @@
 package factory_method.map;
 
 import factory_method.tile.Tile;
+import flyweight.TileGraphicFactory;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +47,21 @@ public abstract class Map {
     }
 
     System.out.println("Legend: \n" + String.join(", ", types));
+  }
+
+  public void render(GraphicsContext gc, int tileSize) {
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        Tile tile = tiles[i][j];
+        String type = tile.getType();
+        gc.drawImage(
+                TileGraphicFactory.getTileImage(type),
+                i * tileSize,
+                j * tileSize,
+                tileSize,
+                tileSize
+        );
+      }
+    }
   }
 }
