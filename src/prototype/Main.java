@@ -48,6 +48,7 @@ public class Main {
               break;
             case 4:
               Recommendation clonedRec = (Recommendation) selectedRecommendation.clone();
+              clonedRec.setTargetAudience(selectedRecommendation.getTargetAudience() + " (Clone)");
               app.recommendations.add(clonedRec);
               System.out.println("Recommendation cloned.");
               break;
